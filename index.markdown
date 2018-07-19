@@ -1,9 +1,4 @@
 ---
 layout: post
-title: Kun的博客
+title: Kun
 ---
-
-# 关于我
-
- 
-# 关于这个博客
