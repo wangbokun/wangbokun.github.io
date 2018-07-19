@@ -24,3 +24,11 @@ disqus:
 baidu: 
 
 
+#菜单
+menu:
+  首页: / 
+  前端: /categories/前端
+  后端: /categories/后端
+  理科: /categories/理科
+  经济: /categories/经济
+  生活: /categories/生活
