@@ -36,7 +36,7 @@ cassandra@cqlsh:system_auth> select * from role_permissions;
 * 创建用户
 
 ```
-cassandra@cqlsh:system_auth>create user user_prod with password 'gEQhXhrhLhQAAAPDBFSDrB';
+cassandra@cqlsh:system_auth>create user user_prod with password 'xxxxxxx';
 ```
 * 用户添加权限
 
