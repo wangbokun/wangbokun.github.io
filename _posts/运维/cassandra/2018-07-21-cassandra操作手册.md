@@ -71,7 +71,7 @@ GRANT select on PERMISSIONS test   to user_prod;
 |删除表中数据|delete from user where id=1;|
 |创建索引|create index on user(user_name);|
 
-#3 数据迁移
+# 3 数据迁移
 
 * 步骤一
   
