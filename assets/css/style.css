@@ -227,7 +227,7 @@ a {
   user-select: none; }
   @media screen and (max-width: 585px) {
     #posts-list {
-      width: 100%; } }
+      width: 70%; } }
 
 #search-form {
   width: 100%;
