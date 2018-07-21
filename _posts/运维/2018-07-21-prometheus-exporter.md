@@ -10,7 +10,7 @@ category: 运维
 ### 1.2 Druid exporter
 > Version druid 0.12.1
 
-- 安装
+#### 安装
 
 ```
 git clone https://github.com/wangbokun/druid-exporter
@@ -19,7 +19,7 @@ pip install prometheus_client
 
 nohup python exporter.py&
 ```
-- Druid配置
+#### Druid配置
 
 ```
 #common
@@ -37,7 +37,7 @@ druid.monitoring.monitors=["io.druid.java.util.metrics.JvmMonitor"]
 #historical
 druid.monitoring.monitors=["io.druid.java.util.metrics.JvmMonitor", "io.druid.server.metrics.QueryCountStatsMonitor"]
 ```
-- Prometheus 采集数据Grafna展示
+####  Prometheus 采集数据Grafna展示
 
 
 
