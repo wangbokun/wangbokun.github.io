@@ -5,12 +5,12 @@ category: 运维
 
 > cassandra操作手册
 
-#1 概述
-## 1.1
-## 1.2
+##1 概述
+### 1.1
+### 1.2
 关于墓碑【1-5】: https://zhaoyanblog.com/archives/964.html
-# 2 操作手册
-## 2.1 权限管理
+## 2 操作手册
+### 2.1 权限管理
 * 开启用户权限认证配置
 
 ```
@@ -57,7 +57,7 @@ GRANT select on PERMISSIONS test   to user_prod;
 |查看keyspace状态|bin/nodetool tablestats -- ${keyspace}||
 
 
-## 2.2 基本操作
+### 2.2 基本操作
 
 | 名称 | CQL |备注  |
 | --- | --- | --- |
@@ -71,7 +71,7 @@ GRANT select on PERMISSIONS test   to user_prod;
 |删除表中数据|delete from user where id=1;|
 |创建索引|create index on user(user_name);|
 
-#3 数据迁移
+##3 数据迁移
 
 * 步骤一
   
