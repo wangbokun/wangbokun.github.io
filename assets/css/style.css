@@ -302,7 +302,7 @@ a {
     background: transparent; }
   #pl__container:hover::-webkit-scrollbar-thumb {
     background: #c8ced6; }
-  @media screen and (max-width: 585px) {
+  @media screen and (max-width: 285px) {
     #pl__container {
       font-size: 15px;
       top: 50px; } }
@@ -331,7 +331,7 @@ a {
       border-radius: 0; } }
 
 .pl__circle {
-  width: .55em;
+  width: .75em;
   height: .75em;
   margin-right: 5px;
   background: #9aa4af;
