@@ -51,15 +51,16 @@ GRANT select on PERMISSIONS test   to user_prod;
 
 #权限列表 ALL，ALTER，AUTHORIZE，CREATE，DROP， MODIFY，SELECT
 ```
-* 常用命令
+* OP常用命令
 
 | 名称 | 命令 |备注  |
 | --- | --- | --- |
 |  手动触发compact| bin/nodetool compact -- ${keyspace} |  |
 |查看keyspace状态|bin/nodetool tablestats -- ${keyspace}||
+|删除节点| ./nodetool removenode host_id force||
 
 
-## 2.2 基本操作
+## 2.2 CQL基本操作
 
 | 名称 | CQL |备注  |
 | --- | --- | --- |
@@ -107,5 +108,14 @@ bin/sstableloader -d 10.128.128.128 /data/{{keyspace}}/
 
 "for i in `ls  /data/cassandra/apache-cassandra/data/data/data_collection_stg/`; do  sudo -u cassandra /data/cassandra/apache-cassandra/bin/sstableloader -d 10.128.237.39,10.128.236.230,10.128.239.173     /data/cassandra/apache-cassandra/data/data/data_collection_stg/$i ;done"
 ```
+
+# 4 升级集群
+![](/assets/img/15326819342354.jpg)
+
+# 5 Q&&A
+## 5.1.1 集群错误串连
+- 集群A节点，错误连接到集群B
+- ./nodetool removenode $NODE_ID
+- ./nodetool -h $IP disablegossip
 
 
