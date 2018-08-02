@@ -4,9 +4,11 @@ category: 运维
 ---
 
 > Prometheus exporter libs
+> https://wiki.lnd.bz/display/LFTC/Node+Exporter
 
 # 1 JAVA类型
-## 1.1 JMX exportr
+## 1.1 go exportr
+
 ## 1.2 Druid exporter
 > Version druid 0.12.1
 > 参考:

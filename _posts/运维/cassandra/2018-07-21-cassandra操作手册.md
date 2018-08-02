@@ -3,10 +3,11 @@ layout: post
 category: 运维
 ---
 
-> cassandra操作手册
+> cassandra操作手册https://www.w3cschool.cn/cassandra/cassandra_drop_keyspace.html
+> http://zqhxuyuan.github.io/tags/cassandra/
 
 # 1 概述
->cassandra操作手册:https://www.w3cschool.cn/cassandra/cassandra_drop_keyspace.html
+ 
 
 ## 1.1
 ## 1.2
@@ -73,7 +74,12 @@ GRANT select on PERMISSIONS test   to user_prod;
 ||select * from user where id=1;
 |删除表中数据|delete from user where id=1;|
 |创建索引|create index on user(user_name);|
+## 2.3 集群rename
 
+```
+UPDATE system.local SET cluster_name = 'dev-cvs-cluster' where key='local';
+./nodetool flush
+```
 # 3 数据迁移
 
 * 步骤一
