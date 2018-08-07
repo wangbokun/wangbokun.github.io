@@ -22,7 +22,7 @@
         <a href="/index.html" id="avatar" style="background:url(http://www.wangbokun.com/assets/public/touxiang.png);background-size:100px 100px;"></a>
 
         <ul id="tags__ul">
-          <li id="js-label1" class="tags__li tags-btn active">所有文章 <span class="post_count"></span></li>
+          <li id="js-label1" class="tags__li tags-btn active">全部<span class="post_count"></span></li>
           {% for category in site.categories %}
             <li id="js-label{{forloop.index | plus:1 }}" class="tags__li tags-btn">{{ category | first }}<span class="post_count"></span></li>
           {% endfor %}
