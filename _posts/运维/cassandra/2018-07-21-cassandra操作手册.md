@@ -119,9 +119,22 @@ bin/sstableloader -d 10.128.128.128 /data/{{keyspace}}/
 ![](/assets/img/15326819342354.jpg)
 
 # 5 Q&&A
-## 5.1.1 集群错误串连
+## 5.1.1 集群节点错误串连
 - 集群A节点，错误连接到集群B
 - ./nodetool removenode $NODE_ID
 - ./nodetool -h $IP disablegossip
+
+## 5.1.2 Couldn't find table for cfId
+> 参考 http://blog.imaou.com/opensource/2015/08/01/cassandra_column_family_id_mismatch.html
+
+
+```
+org.apache.cassandra.db.UnknownColumnFamilyException: Couldn't find table for cfId 622b0d90-956e-11e8-a8a9-75fabe9527fa. If a table was just created, this is likely due to the schema not being fully propa
+gated.  Please wait for schema agreement on table creation.
+        at org.apache.cassandra.config.CFMetaData$Serializer.deserialize(CFMetaData.java:1517) ~[apache-cassandra-3.11.2.jar:3.11.2]
+```
+
+文章写的很详细，先采用轮询重启服务后，不再报错
+
 
 
