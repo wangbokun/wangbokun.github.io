@@ -9,9 +9,13 @@ category: 运维
 # 1 概述
  
 
-## 1.1
-## 1.2
+## 1.1 
+
+## 1.2 墓碑
 关于墓碑【1-5】: https://zhaoyanblog.com/archives/964.html
+## 1.3 写数据过程
+
+
 # 2 操作手册
 ## 2.1 权限管理
 * 开启用户权限认证配置
@@ -59,6 +63,10 @@ GRANT select on PERMISSIONS test   to user_prod;
 |  手动触发compact| bin/nodetool compact -- ${keyspace} |  |
 |查看keyspace状态|bin/nodetool tablestats -- ${keyspace}||
 |删除节点| ./nodetool removenode host_id force||
+|关闭自动压缩|nodetool disableautocompaction|
+|停止正在执行的压缩|nodetool stop COMPACTION|当新节点启动之后，也要执行nodetool disableautocompaction。在数据迁移完毕之后，再放开即可nodetool enableautocompaction|
+|限制所有节点数据迁移流量|nodetool setstreamthroughput 32mbps|限制为32mbps 假设你的集群有10个机器，那么你的新节点的流量大约是32*10mbps。你可以根据数据迁移的进度，完成的节点个数，慢慢调大这个值|
+
 
 
 ## 2.2 CQL基本操作
@@ -74,11 +82,31 @@ GRANT select on PERMISSIONS test   to user_prod;
 ||select * from user where id=1;
 |删除表中数据|delete from user where id=1;|
 |创建索引|create index on user(user_name);|
+
+### 2.2.1 数据修复 
+```
+在当前节点,顺序修复所有的keyspaces
+./nodetool repair -seq
+
+只修复range落在该节点的master数据
+./nodetool repair -pr
+```
 ## 2.3 集群rename
 
 ```
 UPDATE system.local SET cluster_name = 'dev-cvs-cluster' where key='local';
 ./nodetool flush
+```
+## 2.4  system_auth replication_factor 1
+
+
+```
+# 不知道什么原因，system_auth 默认replication_factor 1 修改为:replication_factor 3
+ ALTER  KEYSPACE system_auth WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '3'};
+ 
+ 修改后执行repair
+ 
+ ./nodetool repair --full system_auth
 ```
 # 3 数据迁移
 
