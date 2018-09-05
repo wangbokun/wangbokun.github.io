@@ -37,8 +37,6 @@ cassandra@cqlsh> use system_auth;
 cassandra@cqlsh:system_auth> select * from role_permissions;
 
 ```
-![](/assets/img/15321464483629.jpg)
-
 
 * 创建用户
 
@@ -91,13 +89,12 @@ GRANT select on PERMISSIONS test   to user_prod;
 只修复range落在该节点的master数据
 ./nodetool repair -pr
 ```
-## 2.3 集群rename
+### 2.2.2 数据导出
+`
+    COPY $keyspace.$table  TO '/data/xxxx.csv' WITH  HEADER = true ;
+`
 
-```
-UPDATE system.local SET cluster_name = 'dev-cvs-cluster' where key='local';
-./nodetool flush
-```
-## 2.4  system_auth replication_factor 1
+### 2.3.3 replication_factor repair 1 system_auth
 
 
 ```
@@ -108,6 +105,13 @@ UPDATE system.local SET cluster_name = 'dev-cvs-cluster' where key='local';
  
  ./nodetool repair --full system_auth
 ```
+## 2.3 集群rename
+
+```
+UPDATE system.local SET cluster_name = 'dev-cvs-cluster' where key='local';
+./nodetool flush
+```
+
 # 3 数据迁移
 
 * 步骤一
@@ -144,7 +148,6 @@ bin/sstableloader -d 10.128.128.128 /data/{{keyspace}}/
 ```
 
 # 4 升级集群
-![](/assets/img/15326819342354.jpg)
 
 # 5 Q&&A
 ## 5.1.1 集群节点错误串连
@@ -162,7 +165,7 @@ gated.  Please wait for schema agreement on table creation.
         at org.apache.cassandra.config.CFMetaData$Serializer.deserialize(CFMetaData.java:1517) ~[apache-cassandra-3.11.2.jar:3.11.2]
 ```
 
-文章写的很详细，先采用轮询重启服务后，不再报错
+官方文章写采用轮询重启服务后，不再报错
 
 
 
