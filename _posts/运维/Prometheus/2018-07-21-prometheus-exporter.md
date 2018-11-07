@@ -86,3 +86,18 @@ aws_elb_healthy_host_count_average{job="aws_elb",instance="",load_balancer_name=
 ```
 
 
+```
+问题记录：
+默认采集指标带了时间戳，导致采集不到数据，解决过程如下：
+采集原始值： 最后一列带了一个时间戳
+aws_elasticache_network_bytes_out_average{job="aws_elasticache",instance="",cache_cluster_id="xxxxx",} 310207.0 1536117720000
+
+【解决办法】
+查到源代码
+src/main/java/io/prometheus/cloudwatch/CloudWatchCollector.java
+```
+![](/assets/img/15361200139343.jpg)
+然后修改配置文件，改变默认值
+![](/assets/img/15361200693387.jpg)
+
+

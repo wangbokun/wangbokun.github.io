@@ -50,7 +50,7 @@ cassandra@cqlsh:system_auth>create user user_prod with password 'xxxxxxx';
 GRANT ALL PERMISSIONS ON KEYSPACE test TO  user_prod;
 
 #只读用户
-GRANT select on PERMISSIONS test   to user_prod;
+GRANT select on KEYSPACE test   to user_prod;
 
 #权限列表 ALL，ALTER，AUTHORIZE，CREATE，DROP， MODIFY，SELECT
 ```
