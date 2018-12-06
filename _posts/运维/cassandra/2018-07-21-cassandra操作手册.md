@@ -141,10 +141,24 @@ bin/cqlsh  `hostname -i`  -f  /tmp/{{keyspace}}.cql
 #找到数据存储的目录，并记录keyspace的目录，如果数据是三个副本的话三个节点，
 在老集群一台机器上执行便可，如果只有一个副本，需要在三台机器上都执行一下命令
 
-bin/sstableloader -d 10.128.128.128 /data/{{keyspace}}/
+bin/sstableloader -d 10.10.10.1 /data/{{keyspace}}/
+
+脚本如下
+```
 
 
-"for i in `ls  /data/cassandra/apache-cassandra/data/data/data_collection_stg/`; do  sudo -u cassandra /data/cassandra/apache-cassandra/bin/sstableloader -d 10.128.237.39,10.128.236.230,10.128.239.173     /data/cassandra/apache-cassandra/data/data/data_collection_stg/$i ;done"
+```
+#/bin/bash
+path=$1
+#path="/data/cassandra/apache-cassandra/data/data/$keyspaces_name"
+
+
+for i  in  `ls $path`
+
+do
+	$CASSANDRA_HOME/bin/sstableloader -d 10.10.10.1,10.10.10.2     $path/$i
+
+done
 ```
 
 # 4 升级集群
