@@ -94,7 +94,7 @@ GRANT select on KEYSPACE test   to user_prod;
     COPY $keyspace.$table  TO '/data/xxxx.csv' WITH  HEADER = true ;
 `
 
-### 2.3.3 replication_factor repair 1 system_auth
+### 2.2.3 replication_factor repair 1 system_auth
 
 
 ```
@@ -105,13 +105,36 @@ GRANT select on KEYSPACE test   to user_prod;
  
  ./nodetool repair --full system_auth
 ```
-## 2.3 集群rename
+
+### 2.2.4 集群rename
 
 ```
 UPDATE system.local SET cluster_name = 'dev-cvs-cluster' where key='local';
 ./nodetool flush
 ```
-## 2.4 GC CMS to G1
+### 2.2.5 TRUNCATE table 清空表数据
+
+```
+cqlsh:tp> select * from student;
+
+ s_id | s_aggregate | s_branch | s_name
+------+-------------+----------+--------
+    1 |          70 |       IT | ram
+    2 |          75 |      EEE | rahman
+    3 |          72 |     MECH | robbin
+
+(3 rows)
+
+cqlsh:tp> TRUNCATE student;
+
+cqlsh:tp> select * from student;
+
+ s_id | s_aggregate | s_branch | s_name
+------+-------------+----------+--------
+
+(0 rows)
+```
+## 2.3 GC CMS to G1
 Cassandra默认gc方式是CMS，使用过程中出现很多问题，经常老年代打爆，频繁Full GC，而cassandra在做Full GC期间，不再接受读写操作.所以切换至G1后效果非常显著,记录下切换的方法
 
 ```
@@ -178,7 +201,7 @@ JVM_OPTS="$JVM_OPTS -Xloggc:${CASSANDRA_HOME}/logs/gc.log"
 exec /usr/bin/java $JVM_OPTS $cassandra_parms -cp "$CLASSPATH" org.apache.cassandra.service.CassandraDaemon
 ```
 
-##2.5 systemd start cassandra
+##2.4 systemd start cassandra
 ```
 [cassandra@bin]$ cat /etc/systemd/system/cassandra.service
 [Unit]
@@ -204,7 +227,7 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-## 2.6 cassandra 配置[待完善]
+## 2.5 cassandra 配置[待完善]
 
 ```
 #cassandra.yml
