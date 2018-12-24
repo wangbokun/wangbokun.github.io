@@ -6,13 +6,13 @@ avatar: assets/public/touxiang.png
 description: 一个安静的程序猿
 
 #文档配置
-markdown: kramdown
-kramdown:
-  input: GFM
-  extensions:
-    - autolink
-    - footnotes
-    - smart
+# markdown: kramdown
+# kramdown:
+#   input: GFM
+#   extensions:
+#     - autolink
+#     - footnotes
+#     - smart
 
 #高亮配置
 highlight-theme : my-github
