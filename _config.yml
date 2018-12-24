@@ -22,7 +22,7 @@ kramdown:
 highlight-theme : my-github
 
 #评论配置
-disqus: 
+disqus: wangbokun.com
 
 #统计配置
 baidu: 
