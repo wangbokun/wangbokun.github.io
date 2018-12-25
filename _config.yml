@@ -9,8 +9,8 @@ description: 一个安静的程序猿
 markdown: kramdown
 kramdown:
   input: GFM
-  use_coderay: true
-  syntax_highlighter: rouge
+  #  use_coderay: true
+  #  syntax_highlighter: rouge
   extensions:
     - autolink
     - footnotes
