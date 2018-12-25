@@ -6,10 +6,10 @@ category: 运维
 > Prometheus exporter libs
 > https://wiki.lnd.bz/display/LFTC/Node+Exporter
 
-# 1 JAVA类型
-## 1.1 go exportr
+# 2 Exportr
+## 2.1 go exportr
 
-## 1.2 Druid exporter
+## 2.2 Druid exporter
 > Version druid 0.12.1
 > 参考:
 > http://tinohean.com/2017/10/16/%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-druid/
@@ -51,7 +51,7 @@ druid.monitoring.monitors=["io.druid.java.util.metrics.JvmMonitor", "io.druid.se
 ```
 
 ```
-## 1.3 cloudwatch_exporter
+## 2.3 cloudwatch_exporter
 > https://github.com/prometheus/cloudwatch_exporter
 
 
@@ -101,3 +101,46 @@ src/main/java/io/prometheus/cloudwatch/CloudWatchCollector.java
 ![](/assets/img/15361200693387.jpg)
 
 
+## 2.4 port exporter
+
+```
+ git clone https://github.com/wangbokun/port_exporter.git
+ cd port_exporter/
+ chmod 755 gradlew
+ gradlew shadowJar
+```
+![](/assets/img//15456486442247.jpg)
+![](/assets/img//15456492578593.jpg)
+
+### 配置文件格式(yml):
+
+```
+checkInterval: 30000 #端口检查 间隔  单位 ms 默认10秒
+host: 0.0.0.0
+port: 9333
+targets:  #检查端口列表
+ -
+  name: name1    名称
+  addr: localhost:8080
+ -
+  name: name2    名称
+  addr: localhost:8080
+```
+### run
+
+```
+java -jar {buildName}.jar -c [config_path]
+#curl http://localhost:9333/metrics
+```
+## 2.5 JMX exporter
+
+```
+git clone https://github.com/prometheus/jmx_exporter.git
+cd jmx_exporter
+mvn package
+
+#run
+java -javaagent:./jmx_prometheus_javaagent-0.3.1.jar=8080:config.yaml -jar yourJar.jar
+
+#已写好common ansible-playbooks一键部署.后续提交public 仓库
+```
