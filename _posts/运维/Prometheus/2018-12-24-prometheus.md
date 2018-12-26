@@ -5,17 +5,18 @@ category: 运维
 
 > Prometheus exporter libs
 > https://wiki.lnd.bz/display/LFTC/Node+Exporter
+# 1 Prometheus
+# 2 AlertManager
+# 3 Exportr
+## 3.1 go exportr
 
-# 2 Exportr
-## 2.1 go exportr
-
-## 2.2 Druid exporter
+## 3.2 Druid exporter
 > Version druid 0.12.1
 > 参考:
 > http://tinohean.com/2017/10/16/%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-druid/
 > https://github.com/wikimedia/operations-software-druid_exporter
 
-### 安装
+### 3.2.1 安装
 关于监控metrics的说明
 http://druid.io/docs/0.12.1/operations/metrics.html
 关于monitors及metrics配置相关的说明
@@ -28,7 +29,7 @@ pip install prometheus_client
 
 nohup python exporter.py&
 ```
-### Druid配置
+### 3.2.2 Druid配置
 
 ```
 #common
@@ -46,12 +47,12 @@ druid.monitoring.monitors=["io.druid.java.util.metrics.JvmMonitor"]
 #historical
 druid.monitoring.monitors=["io.druid.java.util.metrics.JvmMonitor", "io.druid.server.metrics.QueryCountStatsMonitor"]
 ```
-###  Prometheus 采集数据Grafna展示
+###  3.2.3 Prometheus 采集数据Grafna展示
 
 ```
 
 ```
-## 2.3 cloudwatch_exporter
+## 3.3 cloudwatch_exporter
 > https://github.com/prometheus/cloudwatch_exporter
 
 
@@ -101,8 +102,8 @@ src/main/java/io/prometheus/cloudwatch/CloudWatchCollector.java
 ![](/assets/img/15361200693387.jpg)
 
 
-## 2.4 port exporter
-
+## 3.4 port exporter
+### 3.4.1 install
 ```
  git clone https://github.com/wangbokun/port_exporter.git
  cd port_exporter/
@@ -112,7 +113,7 @@ src/main/java/io/prometheus/cloudwatch/CloudWatchCollector.java
 ![](/assets/img//15456486442247.jpg)
 ![](/assets/img//15456492578593.jpg)
 
-### 配置文件格式(yml):
+### 3.4.2 配置文件格式(yml):
 
 ```
 checkInterval: 30000 #端口检查 间隔  单位 ms 默认10秒
@@ -126,13 +127,17 @@ targets:  #检查端口列表
   name: name2    名称
   addr: localhost:8080
 ```
-### run
+### 3.4.3 run
 
 ```
 java -jar {buildName}.jar -c [config_path]
 #curl http://localhost:9333/metrics
 ```
-## 2.5 JMX exporter
+### 3.4.4 Fix Host不显示问题
+
+![-w999](/assets/img//15458112298417.jpg)
+
+## 3.5 JMX exporter
 
 ```
 git clone https://github.com/prometheus/jmx_exporter.git
