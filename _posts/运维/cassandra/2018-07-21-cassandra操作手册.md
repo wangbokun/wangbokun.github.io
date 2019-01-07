@@ -90,9 +90,9 @@ GRANT select on KEYSPACE test   to user_prod;
 ./nodetool repair -pr
 ```
 ### 2.2.2 数据导出
-`
+```
     COPY $keyspace.$table  TO '/data/xxxx.csv' WITH  HEADER = true ;
-`
+```
 
 ### 2.2.3 replication_factor repair 1 system_auth
 
