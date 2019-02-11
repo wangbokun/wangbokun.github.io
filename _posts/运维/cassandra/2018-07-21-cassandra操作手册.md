@@ -68,6 +68,7 @@ GRANT select on KEYSPACE test   to user_prod;
 
 
 ## 2.2 CQL基本操作
+> https://blog.csdn.net/zhuwinmin/article/details/76063203
 
 | 名称 | CQL |备注  |
 | --- | --- | --- |
