@@ -135,7 +135,9 @@ aws_elasticache_network_bytes_out_average{job="aws_elasticache",instance="",cach
 src/main/java/io/prometheus/cloudwatch/CloudWatchCollector.java
 ```
 ![](/assets/img/15361200139343.jpg)
+
 然后修改配置文件，改变默认值
+
 ![](/assets/img/15361200693387.jpg)
 
 
@@ -186,3 +188,15 @@ java -javaagent:./jmx_prometheus_javaagent-0.3.1.jar=8080:config.yaml -jar yourJ
 
 #已写好common ansible-playbooks一键部署.后续提交public 仓库
 ```
+## 3.4 Spark sink push metrices
+
+```
+vim $SPARK_HOME/conf/metrics.properties
+#开始配置
+*.sink.jmx.class=org.apache.spark.metrics.sink.JmxSink
+
+#exporter:
+https://github.com/prometheus/jmx_exporter 修改源代码将指标push到pushgateway
+```
+
+
