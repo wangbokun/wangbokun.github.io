@@ -27,15 +27,20 @@ OMS告警配置页面
 ![-w1209](/assets/img//15498793579795.jpg)
 
 Wechat:
+
 ![-w458](/assets/img//15498794149501.jpg)
 ![-w461](/assets/img//15498794361449.jpg)
 
 Email：
+
 ![-w449](/assets/img//15498794560249.jpg)
 ![-w452](/assets/img//15498804096912.jpg)
 
 
 Grafana:
+
 ![-w631](/assets/img//15498795212775.jpg)
+
 AlertDashboard:
+
 ![-w1429](/assets/img//15498819533654.jpg)
