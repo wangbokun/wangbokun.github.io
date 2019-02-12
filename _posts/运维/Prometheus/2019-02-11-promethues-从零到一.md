@@ -19,7 +19,8 @@ category: 运维
 * 各类exporter自动化部署.每类更加通用化的部署方案.提取公共变量.使用ansible-playbooks一键安装脚本
 
 # 2 NIO Prometheus架构图
-![](/assets/img//15498799799475.jpg)
+![](/assets/img//15499383143327.jpg)
+
 
 
 OMS告警配置页面
@@ -28,6 +29,7 @@ OMS告警配置页面
 Wechat:
 ![-w458](/assets/img//15498794149501.jpg)
 ![-w461](/assets/img//15498794361449.jpg)
+
 Email：
 ![-w449](/assets/img//15498794560249.jpg)
 ![-w452](/assets/img//15498804096912.jpg)
