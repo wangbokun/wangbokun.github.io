@@ -20,7 +20,8 @@ category: 运维
 
 # 2 NIO Prometheus
 ## 2.1  结构图
-![](/assets/img//15499383143327.jpg)
+![](/assets/img//15499579754948.jpg)
+
 
 
 
