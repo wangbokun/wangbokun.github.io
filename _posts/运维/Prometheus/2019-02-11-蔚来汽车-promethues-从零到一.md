@@ -28,22 +28,22 @@ category: 运维
 ## 2.2 OMS告警配置页面
 ![-w1209](/assets/img//15498793579795.jpg)
 
-## 2.3 Wechat:
+## 2.3 Wechat
 
 ![-w458](/assets/img//15498794149501.jpg)
 ![-w461](/assets/img//15498794361449.jpg)
 
-## 2.4 Email：
+## 2.4 Email
 
 ![-w449](/assets/img//15498794560249.jpg)
 ![-w452](/assets/img//15498804096912.jpg)
 
 
-## 2.5 Grafana:
+## 2.5 Grafana
 
 ![-w631](/assets/img//15498795212775.jpg)
 
-## 2.6 AlertDashboard:
+## 2.6 AlertDashboard
 
 ![-w1429](/assets/img//15498819533654.jpg)
 
