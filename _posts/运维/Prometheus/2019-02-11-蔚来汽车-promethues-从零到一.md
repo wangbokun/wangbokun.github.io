@@ -47,7 +47,7 @@ category: 运维
 
 ![-w1429](/assets/img//15498819533654.jpg)
 
-# 3 Exportr
+# 3 Exporter
 ## 3.1 Druid exporter
 > Version druid 0.12.1
 > 参考:
