@@ -2,9 +2,10 @@
 layout: post
 category: 运维
 ---
-
+参考文献
 > cassandra操作手册https://www.w3cschool.cn/cassandra/cassandra_drop_keyspace.html
 > http://zqhxuyuan.github.io/tags/cassandra/
+> https://www.cnblogs.com/didda/tag/Cassandra/
 
 # 1 概述
  
