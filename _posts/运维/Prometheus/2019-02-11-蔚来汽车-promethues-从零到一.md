@@ -221,6 +221,9 @@ java -javaagent:./jmx_prometheus_javaagent-0.3.1.jar=8080:config.yaml -jar yourJ
 ```
 ## 3.4 Spark sink push metrices
 
+> 参考http://rokroskar.github.io/monitoring-spark-on-hadoop-with-prometheus-and-grafana.html
+
+
 ```
 vim $SPARK_HOME/conf/metrics.properties
 #开始配置
