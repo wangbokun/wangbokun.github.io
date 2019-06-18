@@ -234,3 +234,7 @@ https://github.com/prometheus/jmx_exporter 修改源代码将指标push到pushga
 ```
 
 
+# 10 参考资料
+> 服务发现和relabel http://ylzheng.com/2018/01/17/prometheus-sd-and-relabel/
+
+
