@@ -76,6 +76,19 @@ category: 运维
 
 ![-w1352](/assets/img//15501577744932.jpg)
 ![](/assets/img//15535123157292.jpg)
+### 2.8 Oncall
+- 卡片式
+![-w1421](/assets/img//15631866134936.jpg)
+- 表格式
+![-w1425](/assets/img//15635428061945.jpg)
+
+- 配置yml
+
+```
+1：支持配置Oncall人员对应，并且支持多人周期轮训排班
+待补充
+2：支持自定义颜色，使用视觉分类法
+```
 
 # 3 Exporter
 ## 3.1 Druid exporter
