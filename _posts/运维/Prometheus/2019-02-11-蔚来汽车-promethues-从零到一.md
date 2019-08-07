@@ -34,7 +34,7 @@ category: 运维
 ![-w1361](/assets/img//15647297709661.jpg)
 - Record 配置
 ![-w876](/assets/img//15647297869262.jpg)
--Target托管
+- Target托管
  > Target部分使用console_sd
  > 以下是custom sd【http sd】转file sd实现 (Prometheus默认没有http sd)
  
