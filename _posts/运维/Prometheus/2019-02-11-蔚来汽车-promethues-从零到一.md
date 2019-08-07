@@ -73,6 +73,7 @@ category: 运维
 ```
 ## 2.7 告警报表-数据化运维-让你的系统群360°无死角.
 > 告警数据全部打入Hive，使用Zeppelin展示
+
 ### 2.7.1 告警总体趋势
 ![-w1429](/assets/img//15501564518390.jpg)
 ### 2.7.1 告警周同比上涨下降
@@ -246,7 +247,7 @@ java -javaagent:./jmx_prometheus_javaagent-0.3.1.jar=8080:config.yaml -jar yourJ
 
 #已写好common ansible-playbooks一键部署.后续提交public 仓库
 ```
-## 3.4 Spark sink push metrices
+## 3.5 Spark sink push metrices
 
 > 参考http://rokroskar.github.io/monitoring-spark-on-hadoop-with-prometheus-and-grafana.html
 
@@ -259,9 +260,18 @@ vim $SPARK_HOME/conf/metrics.properties
 #exporter:
 https://github.com/prometheus/jmx_exporter 修改源代码将指标push到pushgateway
 ```
-
+## 3.6 Mysql Exporter
+## 3.7 Redis Exporter
+## 3.8 Kafka Exporter
+## 3.9 Hdfs Exporter
+## 3.10 Yarn Exporter
 
 # 4 Prometheus配置
+
+```
+
+```
 # 5 Alert Manager配置
 
-
+```
+```
