@@ -52,6 +52,7 @@ category: 运维
 
 
 ## 2.5 Grafana
+>Grafana 6.x Docker部署，Nginx ip_hash 实现 HA
 
 ![-w631](/assets/img//15498795212775.jpg)
 
