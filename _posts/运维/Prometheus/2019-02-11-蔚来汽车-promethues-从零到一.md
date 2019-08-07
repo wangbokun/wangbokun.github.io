@@ -20,19 +20,24 @@ category: 运维
 
 # 2 NIO Prometheus
 ## 2.1  结构图
-![](/assets/img//15499579754948.jpg)
-
-![-w1163](/assets/img//15647298517158.jpg)
+![-w1179](/assets/img//15651885403703.jpg)
 
 
 
-## 2.2 OMS告警配置页面
+
+
+
+
+## 2.2 Loach告警配置页面
 ![-w2870](/assets/img//15647297434241.jpg)
-
+- Rule 配置
 ![-w1361](/assets/img//15647297709661.jpg)
-
+- Record 配置
 ![-w876](/assets/img//15647297869262.jpg)
-
+-Target托管
+ > Target部分使用console_sd
+ > 以下是custom sd【http sd】转file sd实现 (Prometheus默认没有http sd)
+ 
 ![-w1221](/assets/img//15647298380449.jpg)
 
 ## 2.3 Wechat
@@ -50,10 +55,24 @@ category: 运维
 
 ![-w631](/assets/img//15498795212775.jpg)
 
-## 2.6 AlertDashboard
-
+## 2.6 AlertDashboard、Oncall Dashboard
+- 1.0版本
 ![-w1429](/assets/img//15498819533654.jpg)
-## 2.7 报表-数据运维-让你的系统群360°无死角.死角一目了然
+- Oncall Ui 2.0版本
+- 卡片式
+![-w1421](/assets/img//15631866134936.jpg)
+- 表格式
+![-w1425](/assets/img//15635428061945.jpg)
+
+- 配置yml
+
+```
+1：支持配置Oncall人员对应，并且支持多人周期轮训排班
+待补充
+2：支持自定义颜色，使用视觉分类法，不同业务配置不同颜色，总体共支持256中颜色
+```
+## 2.7 告警报表-数据化运维-让你的系统群360°无死角.
+> 告警数据全部打入Hive，使用Zeppelin展示
 ### 2.7.1 告警总体趋势
 ![-w1429](/assets/img//15501564518390.jpg)
 ### 2.7.1 告警周同比上涨下降
@@ -71,7 +90,7 @@ category: 运维
 ![-w573](/assets/img//15536825442998.jpg)
 ![-w558](/assets/img//15536825863899.jpg)
 ![-w526](/assets/img//15536826746917.jpg)
-可点击下钻查看数据详情
+- 可点击下钻查看数据详情
 ![-w403](/assets/img//15536827211154.jpg)
 
 ### 2.7.6 资源使用率
@@ -83,21 +102,9 @@ category: 运维
 
 ![-w1352](/assets/img//15501577744932.jpg)
 ![](/assets/img//15535123157292.jpg)
-### 2.8 Oncall
-- 卡片式
-![-w1421](/assets/img//15631866134936.jpg)
-- 表格式
-![-w1425](/assets/img//15635428061945.jpg)
-
-- 配置yml
-
-```
-1：支持配置Oncall人员对应，并且支持多人周期轮训排班
-待补充
-2：支持自定义颜色，使用视觉分类法
-```
 
 # 3 Exporter
+> 已实现各类Exporter自动化安装(ansible-playbooks big house)
 ## 3.1 Druid exporter
 > Version druid 0.12.1
 > 参考:
@@ -254,7 +261,7 @@ https://github.com/prometheus/jmx_exporter 修改源代码将指标push到pushga
 ```
 
 
-# 10 参考资料
-> 服务发现和relabel http://ylzheng.com/2018/01/17/prometheus-sd-and-relabel/
+# 4 Prometheus配置
+# 5 Alert Manager配置
 
 
