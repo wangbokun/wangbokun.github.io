@@ -40,7 +40,8 @@ MathJax.Ajax.Preloading(
 );
 
 MathJax.Hub.Config({
-  extensions: ['[Contrib]/a11y/accessibility-menu.js']
+  // extensions: ['[Contrib]/a11y/accessibility-menu.js']
+  extensions: ['[MathJax]/a11y/accessibility-menu.js']
   // extensions: ['wangbokun.com/assets/js/mathjax/contrib/a11y/accessibility-menu.js']
 });
 
