@@ -6,23 +6,10 @@ category: 运维
 > Prometheus 
 
 # 1 概述
-> NIO 蔚来汽车监控2.0 Prometheus从0到1
 
-# 1.1  从zabbix/openfalcon 到Promethues
-历经zabbix && openfalcon && ganglia && nagios 等监控系统.而接触到Prometheus的时候，它的易用性以及新的理念.已经无法让我退回其他监控平台上了，下面会进一步说明各个优点.
-
-> 第一个老梗,为什么要引入Prometheus.就不多说了.用过的人都知道.另一方面是集中式平台化，总之一句话."给用户更好的体验.给使用者更便捷的构建"
-
-* 后端多环境多服务,前端统一展示.
-* 告警从短信切换到微信接收，更好的显示告警.用短信发送告警信息你懂得.一坨文字展示.
-* AlertDashboard 告警集中化.为Oncall提供统一、清晰、直观的面板展示.
-* 各类exporter自动化部署.每类更加通用化的部署方案.提取公共变量.使用ansible-playbooks一键安装脚本
-
-# 2 NIO Prometheus
+# 2 Prometheus
 ## 2.1  结构图
-![-w1179](/assets/img//15651885403703.jpg)
-
-
+![](/assets/img//15679999747642.jpg)
 
 
 
@@ -58,10 +45,11 @@ category: 运维
 
 ## 2.6 AlertDashboard、Oncall Dashboard
 - 1.0版本
-![-w1429](/assets/img//15498819533654.jpg)
+![-w1384](/assets/img//15680001587371.jpg)
 - Oncall Ui 2.0版本
 - 卡片式
-![-w1421](/assets/img//15631866134936.jpg)
+![-w1386](/assets/img//15680002448461.jpg)
+
 - 表格式
 ![-w1425](/assets/img//15635428061945.jpg)
 
