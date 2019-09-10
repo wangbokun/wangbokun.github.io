@@ -57,7 +57,7 @@
   //
   // Returns nothing.
   function handleClick(event, container, options) {
-    console.log("===== hand click")
+    console.log("===== hand click",event, container, options)
     options = optionsFor(container, options)
   
     var link = event.currentTarget
@@ -81,6 +81,8 @@
   
     // Ignore empty anchor "foo.html#"
     if (link.href === location.href + '#')
+    console.log("===== link",link.href, location.href, link.hash)
+
       return
   
     var defaults = {
