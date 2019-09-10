@@ -312,7 +312,7 @@ function pjax(options) {
   if (!pjax.state) {
     pjax.state = {
       id: uniqueId(),
-      url: window.location.reload,
+      url: window.location.href,
       title: document.title,
       container: context.selector,
       fragment: options.fragment,
@@ -351,7 +351,7 @@ function pjax(options) {
 // Returns whatever $.pjax returns.
 function pjaxReload(container, options) {
   var defaults = {
-    url: window.location.reload,
+    url: window.location.href,
     push: false,
     replace: true,
     scrollTo: false
@@ -373,7 +373,7 @@ function locationReplace(url) {
 
 
 var initialPop = true
-var initialURL = window.location.reload
+var initialURL = window.location.href
 var initialState = window.history.state
 
 // Initialize $.pjax.state if possible
