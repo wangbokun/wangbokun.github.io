@@ -22,9 +22,6 @@
         enable_page_level_ads: true
       });
     </script>
-     <!--gitalk-->
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
   </head>
   <body>
     <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
@@ -99,20 +96,29 @@
     </script>
     <script src="/assets/js/script.js"></script>
     <!--评论框js-->
-    <script>
-      const gitalk = new Gitalk({
-        client_id: '3cbf7a3ec2f0319740fe',
-        client_secret: 'a1ce5df248eb1933de70742778b94eccdc485727',
-        // labels: "['Gitalk']",
-        repo: 'gitalk',
-        owner: 'wangbokun',
-        admin: ['wangbokun'],
-        id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-      
-      gitalk.render('gitalk-container')
-      </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src='https://d33wubrfki0l68.cloudfront.net/js/2d2a6042373e3318e47edf63c7d9a322e4f27db3/js/src/md5.min.js'></script>
+
+
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '3cbf7a3ec2f0319740fe',
+          clientSecret: 'a1ce5df248eb1933de70742778b94eccdc485727',
+          repo: 'gitalk',
+          owner: 'wangbokun',
+          admin: ['wangbokun'], 
+          id: md5(location.pathname),
+          perPage: 15,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
+        })
+
+        gitalk.render('gitalk-container')           
+    </script>
     <!-- <script>
       /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
       var disqus_shortname = '{{ site.disqus }}';
