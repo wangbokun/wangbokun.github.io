@@ -47,9 +47,7 @@
 
         <nav id="pl__container">
         {% for post in site.posts %}
-          <!-- <a class="{{ post.categories }} pl__all" href="{{ post.url }}"><span class="pl__circle"></span><span class="pl__title">{{ post.title }}</span><span class="pl__date">{{ post.date | date: "%b %Y" }}</span></a> -->
-          <!-- <a class="{{ post.categories }} pl__all" href="http://www.wangbokun.com{{ post.url }}"><span class="pl__circle"></span><span class="pl__title">{{ post.title }}</span></a> -->
-          <a class="{{ post.categories }} pl__all" href="{{ post.url }}"><span class="pl__circle"></span><span class="pl__title">{{ post.title }}</span></a>
+           <a class="{{ post.categories }} pl__all" href="{{ post.url }}"><span class="pl__circle"></span><span class="pl__title">{{ post.title }}</span></a>
           
         {% endfor %}
         </nav>
@@ -113,6 +111,5 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script> -->
-    <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-  </body>
+   </body>
 </html>
