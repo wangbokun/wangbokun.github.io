@@ -173,3 +173,10 @@ https://github.com/ncabatoff/process-exporter
 ```
 
 ## 2.12 Blackbox exporter
+# 3 Client libs
+## 3.1 Java
+
+```
+# spring-boot-1.5-micrometer-prometheus
+https://github.com/TechPrimers/spring-boot-1.5-micrometer-prometheus-example
+```
