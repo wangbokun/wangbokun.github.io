@@ -38,7 +38,111 @@ irate(cpu_iowait{instance="10.10.10.1:9100"}[10m])
 ![-w668](/assets/img//15662174537996.jpg)
 ![-w676](/assets/img//15662174664234.jpg)
 
+总结: rate(增长速率)= [last - frist]/时间(s)
+      increase(增长量) = rate * 时间
+举个例子:
+原始值： 09:12:57 =  30
+        09:11:57 =  24
+![](/assets/img//15718443447542.jpg)
 
+
+![](/assets/img//15718442894612.jpg)
+
+rate(xxx)[1m] = (30-24)/1*60= 0.1
+如图所示需要找下一个点的值:09:13:27~=0.1
+![](/assets/img//15718444723415.jpg)
+
+increase = rate * 时间 = 0.1333 * 60= 7.998 ~=8
+![](/assets/img//15718445850553.jpg)
+当然这个是约等于计算方式，具体计算函数比较复杂，可以看一下原始的代码
+
+
+```
+func extrapolatedRate(vals []Value, args Expressions, enh *EvalNodeHelper, isCounter bool, isRate bool) Vector {
+    ms := args[0].(*MatrixSelector)
+
+    var (
+        matrix     = vals[0].(Matrix)
+        rangeStart = enh.ts - durationMilliseconds(ms.Range+ms.Offset)
+        rangeEnd   = enh.ts - durationMilliseconds(ms.Offset)
+    )
+    // 遍历多个vector，分别求解delta/increase/rate。
+    for _, samples := range matrix {
+        // 忽略少于两个点的vector。
+        if len(samples.Points) < 2 {
+            continue
+        }
+        var (
+            counterCorrection float64
+            lastValue         float64
+        )
+        // 由于counter存在reset的可能性，因此可能会出现0, 10, 5, ...这样的序列，
+        // Prometheus认为从0到5实际的增值为10 + 5 = 15，而非5。
+        // 这里的代码逻辑相当于将10累计到了couterCorrection中，最后补偿到总增值中。
+        for _, sample := range samples.Points {
+            if isCounter && sample.V < lastValue {
+                counterCorrection += lastValue
+            }
+            lastValue = sample.V
+        }
+        resultValue := lastValue - samples.Points[0].V + counterCorrection
+
+        // 采样序列与用户请求的区间边界的距离。
+        // durationToStart表示第一个采样点到区间头部的距离。
+        // durationToEnd表示最后一个采样点到区间尾部的距离。
+        durationToStart := float64(samples.Points[0].T-rangeStart) / 1000
+        durationToEnd := float64(rangeEnd-samples.Points[len(samples.Points)-1].T) / 1000
+        // 采样序列的总时长。
+        sampledInterval := float64(samples.Points[len(samples.Points)-1].T-samples.Points[0].T) / 1000
+        // 采样序列的平均采样间隔，一般等于scrape interval。
+        averageDurationBetweenSamples := sampledInterval / float64(len(samples.Points)-1)
+
+        if isCounter && resultValue > 0 && samples.Points[0].V >= 0 {
+            // 由于counter不能为负数，这里对零点位置作一个线性估计，
+            // 确保durationToStart不会超过durationToZero。
+            durationToZero := sampledInterval * (samples.Points[0].V / resultValue)
+            if durationToZero < durationToStart {
+                durationToStart = durationToZero
+            }
+        }
+
+        // *************** extrapolation核心部分 *****************
+        // 将平均sample间隔乘以1.1作为extrapolation的判断间隔。
+        extrapolationThreshold := averageDurationBetweenSamples * 1.1
+        extrapolateToInterval := sampledInterval
+        // 如果采样序列与用户请求的区间在头部的距离不超过阈值的话，直接补齐；
+        // 如果超过阈值的话，只补齐一般的平均采样间隔。这里解决了上述的速率爆炸问题。
+        if durationToStart < extrapolationThreshold {
+            // 在scrape interval不发生变化、数据不缺失的情况下，
+            // 基本都进入这个分支。
+            extrapolateToInterval += durationToStart
+        } else {
+            // 基本不会出现，除非scrape interval突然变很大，或者数据缺失。
+            extrapolateToInterval += averageDurationBetweenSamples / 2
+        }
+        // 同理，参上。
+        if durationToEnd < extrapolationThreshold {
+            extrapolateToInterval += durationToEnd
+        } else {
+            extrapolateToInterval += averageDurationBetweenSamples / 2
+        }
+        // 对增值进行等比放大。
+        resultValue = resultValue * (extrapolateToInterval / sampledInterval)
+        // 如果是求解rate，除以总的时长。
+        if isRate {
+            resultValue = resultValue / ms.Range.Seconds()
+        }
+
+        enh.out = append(enh.out, Sample{
+            Point: Point{V: resultValue},
+        })
+    }
+    return enh.out
+}
+```
+
+> 参考: https://lotabout.me/2019/QQA-Why-Prometheus-increase-return-float/
+> https://ihac.xyz/2018/12/11/Prometheus-Extrapolation%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/
 ## 3.4 absent
 > nodata的意思，如果数据上报失败(可能exporter当掉，可能这条指标没产生数据)，absent默认补点1
 
