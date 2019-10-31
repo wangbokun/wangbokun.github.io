@@ -33,8 +33,10 @@ http://archive.cloudera.com/cdh5/cdh/5/hadoop-2.6.0-cdh5.15.1-src.tar.gz
 ![](/assets/img//15725280665126.jpg)
 
 ## 2.6 fs.ftp/local-fs 
-这个版本看到hdfs直接支持ftp.可在配置文件中配置ftp相关信息.
-localfs 就不必废话
+
+- 这个版本看到hdfs直接支持ftp.可在配置文件中配置ftp相关信息.
+- localfs 就不必废话
+
 ![](/assets/img//15725153885611.jpg)
 
 # 3 hadoop fs command
