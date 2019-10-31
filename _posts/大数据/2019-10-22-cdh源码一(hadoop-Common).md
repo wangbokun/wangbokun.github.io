@@ -4,11 +4,9 @@ category: 大数据
 ---
 
 >CDH
-#1 OverView
+# 1 源码编译
 
-#2 源码编译
-
-
+## 1.1 源码下载
 ```
 #本文采用5.15.1
 下载地址:
@@ -20,8 +18,10 @@ http://archive.cloudera.com/cdh5/cdh/5/hadoop-2.6.0-cdh5.15.1-src.tar.gz
 
 
 ![](/assets/img//15725153283575.jpg)
-
-## 2.1 hadoop-common-project/hadoop-common/.../fs
+## 1.2 编译
+> ...
+# 2 hadoop-common-project(fs)
+## 2.1 fs
 ![](/assets/img//15725152751074.jpg)
 ## 2.2 Hadoop-auth
 ![](/assets/img//15725279055494.jpg)
@@ -68,3 +68,5 @@ http://archive.cloudera.com/cdh5/cdh/5/hadoop-2.6.0-cdh5.15.1-src.tar.gz
 ![](/assets/img//15725284990121.jpg)
 ## 3.14 test/touchz Command
 ![](/assets/img//15725285359543.jpg)
+## 3.15 viewFS
+# 4 hadoop-common-project(HA)
