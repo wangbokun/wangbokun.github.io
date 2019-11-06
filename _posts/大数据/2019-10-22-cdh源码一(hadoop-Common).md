@@ -20,7 +20,7 @@ http://archive.cloudera.com/cdh5/cdh/5/hadoop-2.6.0-cdh5.15.1-src.tar.gz
 ![](/assets/img//15725153283575.jpg)
 ## 1.2 编译
 > ...
-> 
+
 # 2 hadoop-common-project(fs)
 ## 2.1 fs
 ![](/assets/img//15725152751074.jpg)
