@@ -229,7 +229,8 @@ brew cask install v2rayu
 - 然后选择一下三个红框
 ![-w294](/assets/img//15730955996166.jpg)
 
-然后可实现科学上网
+- 然后可实现科学上网
+
 ![-w701](/assets/img//15730956864076.jpg)
 - Q&A
 
