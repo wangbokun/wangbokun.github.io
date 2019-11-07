@@ -270,5 +270,17 @@ https://github.com/shadowsocks/shadowsocks-android/releases/download/v4.6.5/shad
 ```
 ![](/assets/img//15730959649041.jpg)
 
-## 4.3 iOS
+- 点击小飞机
+
+![-w267](/assets/img//15730964273594.jpg)
+
+- 连接成功
+
+![-w269](/assets/img//15730964788078.jpg)
+
+- 测速
+
+![](/assets/img//15730965157813.jpg)
+
+## 4.3 iOS -未测试
 https://crifan.github.io/scientific_network_summary/website/server_client_mode/ss_client/client_ios.html
