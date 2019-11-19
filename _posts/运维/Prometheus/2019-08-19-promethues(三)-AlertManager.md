@@ -9,3 +9,128 @@ category: 运维
  ![](/assets/img//15662147290801.jpg)
 
 # 2 configure
+## 2.1 基本配置
+
+```
+global:
+  resolve_timeout: 30m
+templates:
+  - './templates/*.tmpl'
+
+route:
+  group_by: ['alertname']
+  #group 等待时间
+  group_wait: 30s
+  #每个多长时间group一次
+  group_interval: 1m
+  #同样告警四个小时候再发送
+  repeat_interval: 4h
+
+```
+
+## 2.2 webhook
+
+```
+#AlertManager webhook 配置
+  receiver: 'default'
+  routes:
+    - receiver: 'sender_default'
+      group_interval: 30s
+      group_by: ['alertname','instance','job']
+      continue: true
+  receivers:
+    webhook_configs:
+      - url: 'http://xxxx.com/api/v1/alert?token=xxxx'
+        send_resolved: true
+```
+## 2.3 inhibit
+
+```
+inhibit_rules:
+- source_match:
+    DefaultAlert:
+    job: aws_ec2_sd
+  target_match:
+    DefaultAlert: true
+    job: aws_ec2_sd
+  equal: [alertname,instance,job]
+
+- source_match:
+    level: p0
+  target_match_re:
+    level: ^p[1-4]
+  equal: [alertname,instance,job]
+
+- source_match:
+    level: p1
+  target_match_re:
+    level: ^p[2-4]$
+  equal: [alertname,instance,job]
+
+- source_match:
+    level: p2
+  target_match_re:
+    level: ^p[3-4]$
+  equal: [alertname,instance,job]
+
+- source_match:
+    level: p3
+    #job: aws_ec2_sd
+  target_match:
+    level: p4
+  equal: [alertname,instance,job]
+
+```
+
+# 3 告警统计-作业流程
+
+> Pipline 1：alertManager webhook->flume->kafka->flume->hdfs->oozie parrtion
+> Pipline 2本文采用oozie->spark sql-> output Mysql ->grafana
+
+![-w910](/assets/img//15741344627447.jpg)
+
+
+## 3.1 Pipline 1
+
+  -  golang自己写sender服务，接收AlertManager Post过来的告警数据，
+   Output： 微信、Email、SMS、csv File
+   
+```
+#AlertManager webhook 配置见上文，2.2 webhook
+#一下两条线，这次先不写细节
+#Flume->kafka->flume->hdfs
+#oozie job hive parttion
+```
+
+## 3.2 Pipline 2
+- oozie + spark sql 做数据统计出报表
+![](/assets/img//15741336321448.jpg)
+
+
+![-w1429](/assets/img//15740599414500.jpg)
+
+![](/assets/img//15740602285242.jpg)
+
+
+Mysql 数据格式
+![](/assets/img//15741334922651.jpg)
+
+grafana告警数据自动化展示
+
+```
+SELECT
+  UNIX_TIMESTAMP(day) as time_sec,
+  total as value,
+  'total' as metric
+
+FROM prom_alerts.loach_alert_total_1d
+WHERE $__timeFilter(day)
+ORDER BY day asc
+
+```
+![](/assets/img//15741335267251.jpg)
+
+# 4 数据化运维之告警统计
+## 4.1 告警总数. 统计/天 报表
+![](/assets/img//15741345414661.jpg)
+## 4.2 告警级别、环境、项目、部门、机器、告警类型
