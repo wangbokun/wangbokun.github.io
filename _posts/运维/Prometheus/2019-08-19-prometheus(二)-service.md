@@ -167,13 +167,47 @@ label_replace(hadoop_NameNodeInfo_Free, "ip", "$1", "instance",  "(.*):.*")
 
 hadoop_NameNodeInfo_Free{instance="10.10.10.1:8080",job="loach_cuntom_sd",ip="10.10.10.1"}	123
 ```
-# 4.Q&&A
-## 4.1
+# 4 内置变量
+# 4.1 cunstom target http
+
+```
+# 默认是不支持http sd的，通过file_sd 变相实现http sd，方便配置
+#首先配置一个file sd
+- job_name: loach_cuntom_sd
+  honor_timestamps: true
+  scrape_interval: 30s
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: http
+  file_sd_configs:
+  - files:
+    - /etc/prometheus/test/loach/targets/*.json
+    refresh_interval: 2m
+#第二部：自己服务添加配置后将文件落地到这个目录，每个两分钟prometheus服务自动刷新目录下的json文件
+```
+
+![](/assets/img//15756139673537.jpg)
+
+
+
+# 5.Q&&A
+## 5.1
 ```
 #“坏指标”报警出来之后，就可以用 metric_relabel_config 的 drop 操作删掉有问题的 label（比如 userId、email 这些一看就是问题户），这里的配置方式可以查阅文档
 # 统计每个指标的时间序列数，超出 10000 的报警
 count by (__name__)({__name__=~".+"}) > 10000
 ```
-## 4.2
+## 5.2
 先 rate() 再 sum()，不能 sum() 完再 rate()
   
+## 5.3 __metrics_path__
+
+```
+targets metrics path自定义问题
+默认path为motrics，动态便跟需要和job平级添加metrics_path来改变
+
+第二种方法是通过labels写入内置变量来实现覆盖
+__metrics_path__ : /prometheus
+```
+![](/assets/img//%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_5e7eee53-e16a-4989-914d-c370b7a7f642.png)
+![](/assets/img//15756142310224.jpg)
