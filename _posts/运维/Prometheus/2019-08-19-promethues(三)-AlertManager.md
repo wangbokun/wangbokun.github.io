@@ -46,6 +46,7 @@ route:
 ## 2.3 inhibit
 
 ```
+inhibit_rules:
 - source_match:
     level: P0
   target_match_re:
@@ -53,15 +54,52 @@ route:
   equal: [alertname,instance,job,Project,method,module]
 
 - source_match:
+    level: P0
+  target_match_re:
+    level: P2
+  equal: [alertname,instance,job,Project,method,module]
+
+- source_match:
+    level: P0
+  target_match_re:
+    level: P3
+  equal: [alertname,instance,job,Project,method,module]
+
+- source_match:
+    level: P0
+  target_match_re:
+    level: P4
+  equal: [alertname,instance,job,Project,method,module]
+
+- source_match:
     level: P1
   target_match_re:
     level: P2
   equal: [alertname,instance,job,Project,method,module]
 
 - source_match:
+    level: P1
+  target_match_re:
+    level: P3
+  equal: [alertname,instance,job,Project,method,module]
+
+- source_match:
+    level: P1
+  target_match_re:
+    level: P4
+  equal: [alertname,instance,job,Project,method,module]
+
+
+- source_match:
     level: P2
   target_match_re:
     level: P3
+  equal: [alertname,instance,job,Project,method,module]
+
+- source_match:
+    level: P2
+  target_match_re:
+    level: P4
   equal: [alertname,instance,job,Project,method,module]
 
 - source_match:
@@ -69,6 +107,25 @@ route:
   target_match_re:
     level: P4
   equal: [alertname,instance,job,Project,method,module]
+
+
+# 测试结果
+规则1: p0 > 100
+规则2: p3 > 5
+
+模拟一:
+value 300
+只发送p0
+value 50
+p0 恢复，发送p3
+value 0
+p3 恢复
+
+模拟二：
+value：300
+只发送p0
+value：0
+p0恢复，p3恢复
 
 ```
 
