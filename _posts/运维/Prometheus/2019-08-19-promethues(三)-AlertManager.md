@@ -46,39 +46,29 @@ route:
 ## 2.3 inhibit
 
 ```
-inhibit_rules:
 - source_match:
-    DefaultAlert:
-    job: aws_ec2_sd
-  target_match:
-    DefaultAlert: true
-    job: aws_ec2_sd
-  equal: [alertname,instance,job]
-
-- source_match:
-    level: p0
+    level: P0
   target_match_re:
-    level: ^p[1-4]
-  equal: [alertname,instance,job]
+    level: P1
+  equal: [alertname,instance,job,Project,method,module]
 
 - source_match:
-    level: p1
+    level: P1
   target_match_re:
-    level: ^p[2-4]$
-  equal: [alertname,instance,job]
+    level: P2
+  equal: [alertname,instance,job,Project,method,module]
 
 - source_match:
-    level: p2
+    level: P2
   target_match_re:
-    level: ^p[3-4]$
-  equal: [alertname,instance,job]
+    level: P3
+  equal: [alertname,instance,job,Project,method,module]
 
 - source_match:
-    level: p3
-    #job: aws_ec2_sd
-  target_match:
-    level: p4
-  equal: [alertname,instance,job]
+    level: P3
+  target_match_re:
+    level: P4
+  equal: [alertname,instance,job,Project,method,module]
 
 ```
 
