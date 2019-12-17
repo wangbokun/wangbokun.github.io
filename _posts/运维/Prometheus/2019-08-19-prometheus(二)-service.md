@@ -196,6 +196,7 @@ hadoop_NameNodeInfo_Free{instance="10.10.10.1:8080",job="loach_cuntom_sd",ip="10
 #“坏指标”报警出来之后，就可以用 metric_relabel_config 的 drop 操作删掉有问题的 label（比如 userId、email 这些一看就是问题户），这里的配置方式可以查阅文档
 # 统计每个指标的时间序列数，超出 10000 的报警
 count by (__name__)({__name__=~".+"}) > 10000
+sort_desc(count by (__name__)({__name__=~".+"}))
 ```
 ## 5.2
 先 rate() 再 sum()，不能 sum() 完再 rate()
@@ -211,3 +212,15 @@ __metrics_path__ : /prometheus
 ```
 ![](/assets/img//%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_5e7eee53-e16a-4989-914d-c370b7a7f642.png)
 ![](/assets/img//15756142310224.jpg)
+
+## 5.4 删除历数据
+
+```
+#按条件删除
+$ curl -X POST -g 'http://localhost:9090/api/v1/admin/tsdb/delete_series?match[]={kubernetes_name="redis"}'
+#按条件删除
+curl -X POST -g 'http://localhost:9090/api/v1/admin/tsdb/delete_series?match[]=servicemap{}'
+
+#删除所有数据
+curl -X POST -g 'http://localhost:9090/api/v1/admin/tsdb/delete_series?match[]={__name__=~".+"}'
+```
