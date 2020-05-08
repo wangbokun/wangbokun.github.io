@@ -1,6 +1,6 @@
 ---
 layout: post
-category: 后端
+category: 运维
 ---
 ![](/assets/img/15517861987812.jpg)
 
