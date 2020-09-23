@@ -192,7 +192,13 @@ Proxmark3（PM3）入门使用 https://blog.2broear.com/notes/proxmark3-pm3-reco
 使用pm3及变色龙获取加密卡信息写入小米手环NFC版 https://post.smzdm.com/p/777188/
 
 使用PM3读取银行闪付卡  http://pm3.echo.cool/index.php/2019/02/23/%e4%bd%bf%e7%94%a8pm3%e8%af%bb%e5%8f%96%e9%93%b6%e8%a1%8c%e9%97%aa%e4%bb%98%e5%8d%a1/
+
 博客： http://pm3.echo.cool/index.php/category/pm3/page/2/
+
 在 macOS 上使用 Proxmark3 https://blog.meow.page/archives/proxmark3-on-mac/
+
 低频卡t5577写入 https://blog.meow.page/archives/Clone-access-card-of-office/
+
 在Linux系统上使用proxmark3 https://blog.meow.page/archives/use-proxmark3-on-linux/
+
+Proxmark3 Mifare Classic 1k Weak / Hard: https://guillaumeplayground.net/proxmark3-hardnested/
